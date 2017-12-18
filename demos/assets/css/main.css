@@ -12,9 +12,10 @@ body, html {
 }
 
 h1 {
-	margin: 1.5em 0;
+	margin: 1.5em .2em;
 	font-size: 3.7rem;
 	font-weight: 500;
+	line-height: 1.2;
 	text-align: center;
 	color: #a05798;
 }
@@ -26,8 +27,9 @@ p {
 /* Forms */
 .form {
 	width: 600px;
+	max-width: 100%;
 	margin: 1rem auto 8rem;
-	padding: 35px;
+	padding: 15px;
 	background: #FFF;
 	box-shadow: 0 8px 16px rgba(0,0,0,.1);
 }
@@ -143,5 +145,23 @@ button.secondary:focus {
 	}
 	50% {
 		opacity: .3;
+	}
+}
+
+@media (min-width: 470px) {
+	.form {
+		padding: 35px;
+	}
+	.line-input:first-child,
+	.line-input:first-child + .line-input {
+		float: left;
+		width: 48%;
+		margin-top: 0;
+	}
+	.line-input:first-child {
+		margin-right: 2%;
+	}
+	.line-input:first-child + .line-input {
+		margin-left: 2%;
 	}
 }
