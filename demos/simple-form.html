@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Form - From Saver</title>
+
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+	<h1>Simple Form Saver Demo</h1>
+
+	<div class="form">
+		<form action="#" method="post" name="form-name">
+			<p class="line-input">
+				<label for="firstname">First Name</label>
+				<input type="text" id="firstname" name="firstname" autocomplete="given-name">
+			</p>
+			<p class="line-input">
+				<label for="lastname">Last Name</label>
+				<input type="text" id="lastname" name="lastname" autocomplete="family-name">
+			</p>
+			<p class="line-input">
+				<label for="email">E-mail</label>
+				<input type="email" id="email" name="email" autocomplete="email">
+			</p>
+			<p class="line-input">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password">
+			</p>
+			<p class="line-input">
+				<label for="nsi">A not saved input</label>
+				<input type="text" id="nsi" name="nsi" data-fs-save="false">
+			</p>
+			<p class="line-input">
+				<label for="country">Country</label>
+				<select id="country" name="country" required>
+					<option value="" selected="selected">-- Choose a country --</option>
+					<option value="espana">España</option>
+					<option value="italia">Italia</option>
+					<option value="france">France</option>
+					<option value="usa">United States of America</option>
+				</select>
+			</p>
+			<p class="line-radio line-choice">
+				<span id="radio1" class="label-like">Are you ok?</span>
+				
+				<span class="radio">
+					<input type="radio" aria-labelledby="radio1" id="r1" name="ruok">
+					<label for="r1">Yep</label>
+				</span>
+				<span class="radio">
+					<input type="radio" aria-labelledby="radio1" id="r2" name="ruok">
+					<label for="r2">Nope</label>
+				</span>
+			</p>
+			<p class="line-textarea">
+				<label for="message">Your Message</label>	
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+			</p>
+			<p class="line-checkboxes line-choice">
+				<span id="check1" class="label-like">Colors you like:</span>
+				
+				<span class="check">
+					<input type="checkbox" aria-labelledby="check1" id="c1" name="colors">
+					<label for="c1">Red</label>
+				</span>
+				
+				<span class="check">
+					<input type="checkbox" aria-labelledby="check1" id="c2" name="colors">
+					<label for="c2">Purple</label>
+				</span>
+				
+				<span class="check">
+					<input type="checkbox" aria-labelledby="check1" id="c3" name="colors">
+					<label for="c3">Green</label>
+				</span>
+
+				<span class="check">
+					<input type="checkbox" aria-labelledby="check1" id="c4" name="colors">
+					<label for="c4">Yellow</label>
+				</span>
+
+				<span class="check">
+					<input type="checkbox" aria-labelledby="check1" id="c5" name="colors">
+					<label for="c5">Blue</label>
+				</span>
+			</p>
+
+			<p class="line-submit">
+				<em>It's a fake form, submitting will just returns the datas saved by the script ;)</em>
+				<button type="button" class="secondary" id="pause">Pause Saver</button>
+				<button type="button" id="send-it">Send it</button>
+			</p>
+		</form>
+	</div>
+
+	<script src="../src/form-saver.js"></script>
+	<script>
+		/*var fs = new FormSaver( 'form-name', {
+			storageType: 'session',
+			storageID: 'ID123',
+		});*/
+
+		var fs = new FormSaver( 'form-name' );
+		fs.init();
+
+		// Pause saving.
+		document.getElementById( 'pause' ).addEventListener( 'click', function() {
+			if ( this.classList.contains( 'in-pause' ) ) {
+				this.innerHTML = 'Pause Saver';
+				this.classList.remove( 'in-pause' );
+				fs.init();
+			} else {
+				this.innerHTML = 'In Pause';
+				this.classList.add( 'in-pause' );
+				fs.pause();
+			}
+		}, false );
+	</script>
+</body>
+</html>

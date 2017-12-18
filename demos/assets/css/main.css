@@ -1,0 +1,167 @@
+* {
+	box-sizing: border-box;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	background: #F4F4F4;
+	font-family: sans-serif;
+	font-size: .625em;
+	color: #444
+}
+
+h1 {
+	margin: 1.5em .2em;
+	font-size: 3.7rem;
+	font-weight: 500;
+	line-height: 1.2;
+	text-align: center;
+	color: #a05798;
+}
+
+p {
+	margin: 0;
+}
+
+/* Forms */
+.form {
+	width: 600px;
+	max-width: 100%;
+	margin: 1rem auto 8rem;
+	padding: 15px;
+	background: #FFF;
+	box-shadow: 0 8px 16px rgba(0,0,0,.1);
+}
+
+p[class^="line-"] + p[class^="line-"] {
+	margin: 4rem 0;
+}
+
+p:not(.line-choice) label,
+.label-like {
+	display: block;
+	margin-bottom:.5em;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	word-spacing: 0.04em;
+}
+
+.line-radio label,
+.line-checkboxes label {
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #666;
+}
+
+.line-radio .radio,
+.line-checkboxes .check {
+	display: inline-block;
+	margin: .5em 2em .5em 0;
+} 
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #DDD;
+	font-size: 1.4rem;
+	background: #F2F2F2;
+	font-family: sans-serif;
+	transition: all .275s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+	background: #FFF;
+	border-color: #444;
+}
+
+textarea {
+	height: 20rem;
+}
+
+.line-submit {
+	margin-top: 2em;
+	text-align: center;
+}
+.line-submit em {
+	display: block;
+	font-size: 1.4rem;
+	color: #666;
+}
+
+button {
+	padding: 15px 25px;
+	margin: 2em .5em 0;
+	border: 0 none;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	word-spacing: 0.04em;
+	color: #FFF;
+	background: #a05798;
+	box-shadow: none;
+	border-radius: 3px;
+	transition: all .275s;
+}
+button:hover,
+button:focus {
+	cursor: pointer;
+	background: #d8438f;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 16px rgba(0,0,0,.1);
+}
+
+button.secondary {
+	background: #EEE;
+	color: #444;
+}
+button.secondary:hover,
+button.secondary:focus {
+	background: #CCC;
+	color: #000;
+}
+
+.in-pause {
+	animation: blink 1.75s infinite;
+}
+
+@keyframes blink {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: .3;
+	}
+}
+
+@media (min-width: 470px) {
+	.form {
+		padding: 35px;
+	}
+	.line-input:first-child,
+	.line-input:first-child + .line-input {
+		float: left;
+		width: 48%;
+		margin-top: 0;
+	}
+	.line-input:first-child {
+		margin-right: 2%;
+	}
+	.line-input:first-child + .line-input {
+		margin-left: 2%;
+	}
+}

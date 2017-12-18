@@ -1,0 +1,20 @@
+{
+  "name": "FormSaver",
+  "version": "1.0.0",
+  "description": "Save the time spent by your visitor saving their formd datas.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "dev": "grunt watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Geoffrey Crofte <support@creativejuiz.com>",
+  "license": "gpl-3",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5"
+  },
+  "dependencies": {}
+}
