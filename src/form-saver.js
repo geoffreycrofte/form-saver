@@ -47,7 +47,8 @@ FormSaver.prototype = function() {
 		for ( i, len; i < len; i++ ) {
 
 			if ( is_forbidden( fields[i] ) ) {
-				return;
+				console.info( 'Forbidden Field:', fields[i] );
+				continue;
 			}
 
 			setField( storID, fields[i] );
@@ -170,11 +171,19 @@ FormSaver.prototype = function() {
 	 * @return {boolean}       True if field is a forbidden one.
 	 */
 	const is_forbidden = function( field ) {
+		// Don't save passwords.
 		if ( field.type === 'password' ) {
 			return true;
 		}
 
-		if ( field.dataset( 'fs-save' ) && field.dataset( 'fs-save' ) === 'false' ) {
+		// Don't save passwords current/new, or Credit Card CSC format.
+		const autoC = field.getAttribute('autocomplete');
+		if ( autoC && ( autoC === 'cc-csc' || autoC === 'new-password' || autoC === 'current-password' ) ) {
+			return true;
+		}
+
+		// Don't save fields manually marked as should-not-be-saved.
+		if ( field.dataset.fsSave && field.dataset.fsSave === 'false' ) {
 			return true;
 		}
 
