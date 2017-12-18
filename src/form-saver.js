@@ -97,8 +97,7 @@ FormSaver.prototype = function() {
 			s.storType.setItem( formID + '-' + field.name, thesea );
 			console.info( 'Saved:' + formID + '-' + field.name + '=>' );
 			console.info( thesea );
-		}
-		else {
+		} else {
 			s.storType.setItem( formID + '-' + getFieldKey( field ), field.value );
 			console.info( 'Saved:' + formID + '-' + getFieldKey( field ) + '=>' + field.value );
 		}
@@ -123,9 +122,19 @@ FormSaver.prototype = function() {
 			document.getElementById( itemval ).checked = true;
 		} else if ( is_check( field ) ) {
 			var l = 0,
-				checkeds = itemval.split(',');
-			for ( le = checkeds.length; l < le; l++ ) {
+				checkeds = itemval.split(','),
+				le = checkeds.length;
+
+			for ( le, l; l < le; l++ ) {
 				document.getElementById( checkeds[l] ).checked = true;
+			}
+		} else if ( is_select( field ) ) {
+			var selOption = field.querySelector( '[value="' + itemval + '"]' );
+			if ( selOption ) {
+				if ( field.querySelector( '[selected]' ) ) {
+					field.querySelector( '[selected]' ).removeAttribute( 'selected' );
+				}
+				selOption.setAttribute( 'selected', 'selected' );
 			}
 		} else {
 			var element = document.getElementById( field.id ) || document.querySelector('[name="' + field.name + '"]') ;
@@ -141,7 +150,7 @@ FormSaver.prototype = function() {
 	 */
 	const getField = function( formID, field ) {
 		var the_value = s.storType.getItem( formID + '-' + getFieldKey( field ) );
-		console.info( 'Value for ' + formID + '-' + getFieldKey( field ) + ': ' + the_value );
+		//console.info( 'Value for ' + formID + '-' + getFieldKey( field ) + ': ' + the_value );
 		return the_value;
 	};
 
@@ -214,7 +223,7 @@ FormSaver.prototype = function() {
 	 * @return {boolean}       True if field is a select.
 	 */
 	const is_select = function( field ) {
-		return field.tagName == 'select';
+		return field.tagName == 'SELECT';
 	}
 
 	/**
