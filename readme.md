@@ -15,7 +15,7 @@ Then link the script to your document, the one with a form to save, putting thos
 ```HTML
 <script src="/assets/src/form-saver.min.js"></script>
 <script>
-	var fs = new FormSaver( 'myform' );
+	const fs = new FormSaver( 'myform' );
 	fs.init();
 </script>
 ```
@@ -27,7 +27,7 @@ Replace `/assets/src/` by the right folder, and remove `.min` from the file name
 ### Optional arguments
 
 ```JavaScript
-var fs = new FormSaver( 'myform', {
+const fs = new FormSaver( 'myform', {
 	storageType     : 'local',
 	storageID       : 'ID123',
 	storageDuration : 30, // not supported yet.
@@ -50,7 +50,7 @@ In case you need to save multiple form, or have a generic way to declare FormSav
 
 * `init`<br>The only way to make Form Saver work.
 ```JavaScript
-var fs = new FormSaver( 'form-name' );
+const fs = new FormSaver( 'form-name' );
 fs.init();
 ```
  
@@ -158,7 +158,7 @@ Example if you want to get the value of a field in that form (that would be alre
 You'll need to do that in JS for the name:
 
 ```JavaScript
-var name_value = window.localStorage.getItem( 'my-form-name' );
+let name_value = window.localStorage.getItem( 'my-form-name' );
 console.log( name_value ); // (string) the value of the field.
 ```
 
@@ -167,7 +167,7 @@ For the same input, if you don't provide `id`, just replace `name` by `the-name`
 To get the checkboxes value(s), use:
 
 ```JavaScript
-var checks = window.localStorage.getItem( 'my-form-colors' );
+let checks = window.localStorage.getItem( 'my-form-colors' );
 console.log( checks ); (array) the list of id(s) of checked checkbox(es).
 ```
 
@@ -198,6 +198,12 @@ A bunch of messages to:
 
 * warn users their browser just crashed
 * activate/deactivate save-mode directly by the user himself
+
+### Offline support
+
+Detect during the process if the user is still online or offline.
+If not add the possibility to display a warning message.
+If they try to submit the form, tell them their data is saved in their browser and the form will be send again when online. (don't close the tab!)
 
 ## Browser Support
 
