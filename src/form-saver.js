@@ -18,7 +18,7 @@ var FormSaver = function( form, args ) {
  * Prototype model of FCS object.
  */
 FormSaver.prototype = function() {
-	var s = {};
+	const s = {};
 
 	/**
 	 * Init all the functional work to save field datas.
@@ -82,7 +82,7 @@ FormSaver.prototype = function() {
 
 		if ( is_radio( field ) ) {
 			s.storType.setItem( formID + '-' + field.name, field.id );
-			console.info( 'Saved:' + formID + field.name + '=>' + field.id );
+			console.info( 'Saved: ' + formID + field.name + ' => ' + field.id );
 		} else if ( is_check( field ) ) {
 			var these = document.querySelectorAll( '[name="' + field.name + '"]' ),
 				thesea = [],
@@ -95,11 +95,11 @@ FormSaver.prototype = function() {
 				thesea.push( these[k].id );
 			}
 			s.storType.setItem( formID + '-' + field.name, thesea );
-			console.info( 'Saved:' + formID + '-' + field.name + '=>' );
+			console.info( 'Saved: ' + formID + '-' + field.name + ' => ' );
 			console.info( thesea );
 		} else {
 			s.storType.setItem( formID + '-' + getFieldKey( field ), field.value );
-			console.info( 'Saved:' + formID + '-' + getFieldKey( field ) + '=>' + field.value );
+			console.info( 'Saved: ' + formID + '-' + getFieldKey( field ) + ' => ' + field.value );
 		}
 		return field;
 	};
