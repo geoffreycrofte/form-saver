@@ -1,7 +1,7 @@
 Form Saver
 =================================
 
-FS (Form Saver) is make to save your users time while filling short or long forms. It uses localStorage (by default) to register locally datas given by the user while completing your page forms.
+FS (Form Saver) is made to save your users time while filling short or long forms. It uses localStorage (by default) to register locally datas given by the user while completing your page forms.
 In case of browser crash, the script re-fill forms (automatically or by asking to user depending on you settings, again) to avoid user frustration.
 
 ## How to use it
