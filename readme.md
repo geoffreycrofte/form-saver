@@ -60,12 +60,21 @@ if ( somethingHappens() ) {
 	fs.pause();
 }
 ```
-If you need to save things again, just use `init()` method.
+
+If you need to save things after a stop/pause, just use `init()` method.
 ```JavaScript
 if ( IneedToSaveAgain() ) {
 	fs.init();
 }
 ```
+
+* `save`<br>Save all the fields of your form.
+```JavaScript
+setInterval( function(){
+	fs.save();
+}, 10000);
+```
+When you want to save all the form field every 10s. Be careful with the performance, that's not ideal. Oftentime you need this when you enter in a long duration edition in a textarea or similar. Try to trigger this interval at the right time and clear it as soon as you don't need it.
 
 * `destroy`<br>Destroy all datas stored.
 ```JavaScript
@@ -128,7 +137,7 @@ This script has some basic "automatic" behaviours you should know.
 
 As you should know, `name` and `id` attributes should always be provided for each input, select, textarea or whatever-form element you use.
 
-* to compose the **field key** of the value saved, the script uses by default the `id` attribute in its methods for not grouped inputs, and `name` as fallback is `id` is not provided.
+* to compose the **field key** of the value saved, the script uses by default the `id` attribute in its methods for not grouped inputs, and `name` as fallback if `id` is not provided.
 * to do the same with grouped inputs (checkboxes, radios), the script uses only the `name` attribute as **field key**.
 * the global key of an item (localStorage or sessionStorage item) is composed with the **form unique ID** and the **field key**
 

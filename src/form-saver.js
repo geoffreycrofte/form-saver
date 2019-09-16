@@ -1,7 +1,9 @@
 /**!
  * Form Saver library
+ *
  * @author: Geoffrey Crofte (https://geoffrey.crofte.fr)
- * @lastUpdate: 2017-10-16
+ * @creationDate: 2017-10-07
+ * @lastUpdate: 2019-09-16
  */
 
 var FormSaver = function( form, args ) {
@@ -9,7 +11,7 @@ var FormSaver = function( form, args ) {
 
 	this.form         = document.getElementById( form ) || document.querySelector( '[name="' + form + '"]' );
 	this.storType     = args.storageType || 'local'; // Session
-	this.storDuration = args.storageDuration || 30; // in minutes
+	this.storDuration = args.storageDuration || 30; // in minutes (not used yet)
 	this.storID       = args.storageID || form;
 	this.fields       = 'input, select, textarea';
 };
@@ -22,6 +24,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Init all the functional work to save field datas.
+	 *
 	 * @return {object} [FormSaver object]
 	 */
 	const init = function() {
@@ -73,6 +76,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Save the value of a given field.
+	 *
 	 * @param  {object} field The given field.
 	 * @return {object}       The Given field.
 	 */
@@ -105,7 +109,33 @@ FormSaver.prototype = function() {
 	};
 
 	/**
+	 * Save all the fields of a form. Try not to use it :D
+	 * 
+	 * @param  {} fields The given field.
+	 * @return {}        Something
+	 */
+	const saveFields = function( fields ) {
+		fields = fields || this.form.querySelectorAll( this.fields );
+
+		var len = fields.length,
+			i   = 0;
+
+		for ( i, len; i < len; i++ ) {
+
+			if ( is_forbidden( fields[i] ) ) {
+				console.info( 'Forbidden Field:', fields[i] );
+				continue;
+			}
+
+			target = {'target' : { 'formID': this.storID, 'field' : fields[i] } }
+			saveField( target );
+		}
+		console.info( 'Global saving initiated. Be careful of the performances.' );
+	};
+
+	/**
 	 * Set the value of a given field.
+	 *
 	 * @param  {object} field The given field.
 	 * @return {object}       The Given field.
 	 */
@@ -145,6 +175,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Get the value for a field
+	 *
 	 * @param  {object} field The given field.
 	 * @return {string}       The given field value.
 	 */
@@ -156,6 +187,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Clear the value for a field
+	 *
 	 * @param  {object} field The given field.
 	 * @return {object}       The Given field.
 	 */
@@ -167,6 +199,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Get the field key which is the ID or the name value of the field.
+	 *
 	 * @param  {object} field The given field.
 	 * @return {string}       The field ID.
 	 */
@@ -176,6 +209,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Is the field a forbidden-for-save field?
+	 *
 	 * @param  {object}  field The given field.
 	 * @return {boolean}       True if field is a forbidden one.
 	 */
@@ -201,6 +235,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Is the fields a radio?
+	 *
 	 * @param  {object}  field The given field.
 	 * @return {boolean}       True if field is a radio.
 	 */
@@ -210,6 +245,7 @@ FormSaver.prototype = function() {
 	
 	/**
 	 * Is the fields a checkbox?
+	 *
 	 * @param  {object}  field The given field.
 	 * @return {boolean}       True if field is a checkbox.
 	 */
@@ -219,6 +255,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Is the fields a select?
+	 *
 	 * @param  {object}  field The given field.
 	 * @return {boolean}       True if field is a select.
 	 */
@@ -228,6 +265,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Remove the eventListener on all the form inputs.
+	 *
 	 * @return {object} [FormSaver object]
 	 */
 	const pause = function() {
@@ -253,6 +291,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Remove all the datas saved for the current form.
+	 *
 	 * @return {object} [FormSaver object]
 	 */
 	const destroy = function() {
@@ -270,6 +309,7 @@ FormSaver.prototype = function() {
 
 	/**
 	 * Get all the datas saved for the current form.
+	 *
 	 * @return {array} The list of datas by key.
 	 */
 	const getDatas = function() {
@@ -291,6 +331,7 @@ FormSaver.prototype = function() {
 		init     : init,
 		pause    : pause,
 		stop     : pause,
+		save     : saveFields,
 		destroy  : destroy,
 		getDatas : getDatas,
 	}
