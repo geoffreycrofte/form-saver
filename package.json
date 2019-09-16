@@ -11,10 +11,10 @@
   "author": "Geoffrey Crofte <support@creativejuiz.com>",
   "license": "gpl-3",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-uglify": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-notify": "^0.4.5"
+    "grunt": ">=1.0.1",
+    "grunt-contrib-uglify": ">=1.0.1",
+    "grunt-contrib-watch": ">=1.0.0",
+    "grunt-notify": ">=0.4.5"
   },
   "dependencies": {}
 }
